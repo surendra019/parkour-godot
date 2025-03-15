@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://0ouxy0sc7i67"]
+
+[ext_resource type="Script" path="res://Scripts/fan.gd" id="1_40r2e"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qld7n"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vsy1x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_115h2"]
+size = Vector3(20, 0.5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o2yr0"]
+size = Vector3(20, 0.5, 1)
+
+[node name="Fan" type="StaticBody3D"]
+script = ExtResource("1_40r2e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_qld7n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_vsy1x")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_115h2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D2"]
+mesh = SubResource("BoxMesh_o2yr0")

@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://buqvn3xbotmvy"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_d8vsc"]
+[ext_resource type="PackedScene" uid="uid://dgpbvb52763sa" path="res://Scenes/player.tscn" id="1_irb37"]
+[ext_resource type="Texture2D" uid="uid://dfgs06pt7wpsa" path="res://Assets/kloofendal_48d_partly_cloudy_puresky_1k.exr" id="2_tta2l"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_4u561"]
+panorama = ExtResource("2_tta2l")
+
+[sub_resource type="Sky" id="Sky_wa5qo"]
+sky_material = SubResource("PanoramaSkyMaterial_4u561")
+
+[sub_resource type="Environment" id="Environment_07mox"]
+background_mode = 2
+sky = SubResource("Sky_wa5qo")
+
+[node name="Main" type="Node3D" groups=["main"]]
+script = ExtResource("1_d8vsc")
+
+[node name="Player" parent="." instance=ExtResource("1_irb37")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -104.103, 2.73615, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.999995, 0.00322885, 0, -0.00287619, 0.890772, 0.454441, 0.00146732, -0.454439, 0.890777, 0, 1.21629, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_07mox")
+
+[node name="LevelContainer" type="Node3D" parent="."]

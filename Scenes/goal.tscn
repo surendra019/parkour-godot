@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs7i7t2pwpj18"]
+
+[ext_resource type="Texture2D" uid="uid://dhwuhpeyuu4a6" path="res://icon.svg" id="1_ig020"]
+
+[sub_resource type="GDScript" id="GDScript_fhhtf"]
+script/source = "extends Area3D
+
+
+func _on_body_entered(body: Node3D) -> void:
+	if body.is_in_group(\"player\"):
+		get_tree().get_first_node_in_group(\"main\").game_win()
+"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wfmu5"]
+radius = 1.33982
+
+[node name="Goal" type="Area3D"]
+script = SubResource("GDScript_fhhtf")
+
+[node name="Decal" type="Decal" parent="."]
+texture_albedo = ExtResource("1_ig020")
+cull_mask = 1048573
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_wfmu5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
